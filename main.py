@@ -56,12 +56,16 @@ def get_index():
     index_path =  dir_path+'/static/index.html'
     return open(index_path).read()
 
+###################################
 class MainHandler(webapp2.RequestHandler):
+    def write_form(self, form, error=""):
+        self.response.out.write(form % {"error" : error})
+
     def get(self):
         content = get_index()
-        self.response.write(content)
+        self.write_form(content)
 
-
+###################################
 class TestHandler(webapp2.RequestHandler):
     def write_form(self, form, error=""):
         self.response.out.write(form % {"error" : error})
