@@ -16,6 +16,7 @@
 #
 import webapp2
 import os
+import cgi
 
 months = ['January',
           'February',
@@ -51,43 +52,114 @@ def valid_year(year):
         return year
     return None
 
-def get_index():
+def get_html(path):
     dir_path = os.path.dirname(os.path.realpath(__file__))
-    index_path =  dir_path+'/static/index.html'
+    index_path =  dir_path+path
     return open(index_path).read()
+
+# def escape_html(s):
+#     if type(s) is not str:
+#         s = str(s)
+#     return s.replace('&','&amp;').\
+#         replace('>', '&gt;').\
+#         replace('<','&lt;').\
+#         replace('"','&quot;')
+
+def escape_html(s):
+    if type(s) is not str:
+        s = str(s)
+    return cgi.escape(s, quote = True).encode('ascii','ignore')
+
 
 ###################################
 class MainHandler(webapp2.RequestHandler):
-    def write_form(self, form, error=""):
-        self.response.out.write(form % {"error" : error})
+    def write_form(self, form, error="", month="", day="", year=""):
+        self.response.out.write(form % {
+          "error" : error,
+          "month" : month,
+          "day" : day,
+          "year" : year})
 
     def get(self):
-        content = get_index()
+        content = get_html('/static/index.html')
         self.write_form(content)
 
+    def post(self):
+        i_m = self.request.get("month")
+        i_d = self.request.get("day")
+        i_y = self.request.get("year")
+        m = valid_month(i_m)
+        d = valid_day(i_d)
+        y = valid_year(i_y)
+        if not (m and d and y):
+            content = get_html('/static/index.html')
+            self.write_form(content,
+              error="Something Wrong",
+              month=escape_html(i_m),
+              day=escape_html(i_d),
+              year=escape_html(i_y))
+        else:
+            self.redirect("/thanks")
+
 ###################################
-class TestHandler(webapp2.RequestHandler):
-    def write_form(self, form, error=""):
-        self.response.out.write(form % {"error" : error})
+class ThanksHandler(webapp2.RequestHandler):
+    def get(self):
+        self.response.out.write("Thank you!")
+
+###################################
+class SignupHandler(webapp2.RequestHandler):
+    def write_form(self, form, error="", username="", \
+                    pswd="", pswd2="", email=""):
+        self.response.out.write(form % {
+          "error" : error,
+          "username" : username,
+          "pswd" : pswd,
+          "pswd2" : pswd2,
+          "email" : email})
 
     def get(self):
-        q = self.request.get("q")
-        self.response.out.write(q)
+        content = get_html('/static/signup.html')
+        self.write_form(content)
 
     def post(self):
-        m = valid_month(self.request.get("month"))
-        d = valid_day(self.request.get("day"))
-        y = valid_year(self.request.get("year"))
-        if not (m and d and y):
-            content = get_index()
-            self.write_form(content, "Something Wrong")
-        else:
-            self.response.out.write("Thank you!")
+        i_name = self.request.get("username").encode('ascii','ignore')
+        self.redirect("welcome?username="+i_name)
+
+
+###################################
+class WelcomeHandler(webapp2.RequestHandler):
+    def get(self):
+        username = self.request.get("username")
+        msg = "Thank you, "+username+" !"
+        content = get_html('/static/message.html')
+        self.response.out.write(content%{"message":msg})
+
+###################################
+# class TestHandler(webapp2.RequestHandler):
+#     def write_form(self, form, error=""):
+#         self.response.out.write(form % {"error" : error})
+
+#     def get(self):
+#         q = self.request.get("q")
+#         self.response.out.write(q)
+
+#     def post(self):
+#         m = valid_month(self.request.get("month"))
+#         d = valid_day(self.request.get("day"))
+#         y = valid_year(self.request.get("year"))
+#         if not (m and d and y):
+#             content = get_index()
+#             self.write_form(content, "Something Wrong")
+#         else:
+#             self.response.out.write("Thank you!")
 
         # self.response.headers['content-type'] = "text/plain"
         # self.response.out.write(self.request)
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/testform', TestHandler)
+    ('/thanks', ThanksHandler),
+    ('/signup', SignupHandler),
+    ('/welcome', WelcomeHandler)
+    #('/testform', TestHandler)
 ], debug=True)
