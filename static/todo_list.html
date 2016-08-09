@@ -16,12 +16,16 @@
         <h1 class="project-name">TODO List</h1>
         <h2 class="project-tagline"></h2>
 
-        <form method="get">
+        <table border="0" width="400">
+        <tr><th>Items:</th></tr>
+        %(items)s
+        </table>
+        <br><br>
+        <form method="post">
             <table border="0" width="400">
                 <tr>
                     <th class="btn">
-                        <input type="text" name="item" value="%(item)s">
-                        <input type="hidden" name="food" value="eggs">
+                        <input type="text" name="user_input" value="%(user_input)s">
                     </th>
                     <th>
                         <input value="Add" class = 'btn' type="submit">
