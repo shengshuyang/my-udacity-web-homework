@@ -15,15 +15,17 @@
     <section class="page-header">
         <h1 class="project-name">TODO List</h1>
         <h2 class="project-tagline"></h2>
-        <form method="post">
+        <form method="get">
             <table border="0" width="400">
                 <tr>
                     <th class="btn">
-                        <input type="text" name="user_input" value="%(user_input)s">
+                        <input type="text" name="food" value="{{item}}">
                     </th>
                     <th>
-                        <input value="Add" class='btn' type="submit">
+                        <button class='btn'>Add</button>
                     </th>
+                    {% for item in items %}
+                    <input type="hidden" name="food" value="{{item}}"> {% endfor %}
                 </tr>
             </table>
         </form>
@@ -31,9 +33,13 @@
         <br>
         <table border="0" width="400">
             <tr>
-                <th>Items:</th>
+                {% if items %}<th>Items:</th> {% endif %}
             </tr>
-            %(items)s
+            {% for item in items %}
+            <tr>
+                <th>&bull; {{item}}</th>
+            </tr>
+            {% endfor %}
         </table>
         <br>
         <br>

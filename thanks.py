@@ -4,7 +4,7 @@ from validation_util import *
 
 class ThanksHandler(webapp2.RequestHandler):
     def get(self):
-        content = get_html('/static/message.html')
+        content = get_html('/templates/message.html')
         self.response.out.write(content%{"message":"Thank you!"})
 
 app = webapp2.WSGIApplication([

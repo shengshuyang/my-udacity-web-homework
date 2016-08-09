@@ -26,7 +26,7 @@ class SignupHandler(webapp2.RequestHandler):
           "err4" : err4})
 
     def get(self):
-        content = get_html('/static/signup.html')
+        content = get_html('/templates/signup.html')
         self.write_form(content)
 
     def post(self):
@@ -45,7 +45,7 @@ class SignupHandler(webapp2.RequestHandler):
             errs[3] = "That's not a valid email address."
         for err in errs:
             if err != "":
-                content = get_html('/static/signup.html')
+                content = get_html('/templates/signup.html')
                 self.write_form(content, i_name, i_pswd, i_pswd2,
                     i_email, errs[0],errs[1],errs[2],errs[3])
                 return

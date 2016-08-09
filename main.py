@@ -27,7 +27,7 @@ class MainHandler(webapp2.RequestHandler):
           "year" : year})
 
     def get(self):
-        content = get_html('/static/index.html')
+        content = get_html('/templates/index.html')
         self.write_form(content)
 
     def post(self):
@@ -38,7 +38,7 @@ class MainHandler(webapp2.RequestHandler):
         d = valid_day(i_d)
         y = valid_year(i_y)
         if not (m and d and y):
-            content = get_html('/static/index.html')
+            content = get_html('/templates/index.html')
             self.write_form(content,
               error="Something Wrong",
               month=escape_html(i_m),
