@@ -1,7 +1,5 @@
 import webapp2
-import os
 import handler as hd
-from validation_util import *
 
 class WelcomeHandler(hd.Handler):
     def get(self):
