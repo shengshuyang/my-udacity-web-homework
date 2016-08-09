@@ -1,13 +1,12 @@
 import webapp2
 import os
+import handler as hd
 from validation_util import *
 
 class ThanksHandler(webapp2.RequestHandler):
     def get(self):
-        content = get_html('/templates/message.html')
-        self.response.out.write(content%{"message":"Thank you!"})
+        self.render('message.html', message = "Thank you")
 
 app = webapp2.WSGIApplication([
     ('/thanks', ThanksHandler)
-    #('/testform', TestHandler)
 ], debug=True)

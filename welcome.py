@@ -1,13 +1,13 @@
 import webapp2
 import os
+import handler as hd
 from validation_util import *
 
-class WelcomeHandler(webapp2.RequestHandler):
+class WelcomeHandler(hd.Handler):
     def get(self):
         username = self.request.get("username")
-        msg = "Thank you, "+username+" !"
-        content = get_html('/templates/message.html')
-        self.response.out.write(content%{"message":msg})
+        msg = "Welcome, "+username+" !"
+        self.render('message.html', message = msg)
 
 app = webapp2.WSGIApplication([
     ('/welcome', WelcomeHandler)
