@@ -13,6 +13,15 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
+- url: /welcome
+  script: welcome.app
+
+- url: /signup
+  script: signup.app
+
+- url: /thanks
+  script: thanks.app
+
 - url: .*
   script: main.app
 
