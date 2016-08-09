@@ -15,37 +15,13 @@
 # limitations under the License.
 #
 import webapp2
+import handler as hd
 import os
 from validation_util import *
 
-class MainHandler(webapp2.RequestHandler):
-    def write_form(self, form, error="", month="", day="", year=""):
-        self.response.out.write(form % {
-          "error" : error,
-          "month" : month,
-          "day" : day,
-          "year" : year})
-
+class MainHandler(hd.Handler):
     def get(self):
-        content = get_html('/templates/index.html')
-        self.write_form(content)
-
-    def post(self):
-        i_m = self.request.get("month")
-        i_d = self.request.get("day")
-        i_y = self.request.get("year")
-        m = valid_month(i_m)
-        d = valid_day(i_d)
-        y = valid_year(i_y)
-        if not (m and d and y):
-            content = get_html('/templates/index.html')
-            self.write_form(content,
-              error="Something Wrong",
-              month=escape_html(i_m),
-              day=escape_html(i_d),
-              year=escape_html(i_y))
-        else:
-            self.redirect("/thanks")
+        self.render('index.html')
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
