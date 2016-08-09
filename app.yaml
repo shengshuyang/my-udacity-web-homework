@@ -22,6 +22,9 @@ handlers:
 - url: /thanks
   script: thanks.app
 
+- url: /todo_list
+  script: todo_list.app  
+
 - url: .*
   script: main.app
 
