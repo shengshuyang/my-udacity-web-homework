@@ -6,41 +6,39 @@ Blog by shengshuyang
 
 
 {% block content %}
-
-    <div class="section no-pad-bot" id="index-banner" style="background-image: linear-gradient(120deg, #155799, #159957);background-size: cover;background-position: center;position: relative;min-height: 450px;">
-
-        <div class="container">
-            <h1 class="header center white-text" style="text-shadow: 1px 1px #444444;">Blog</h1>
+<div class="section no-pad-bot" id="index-banner" style="background-image: linear-gradient(120deg, #155799, #159957);background-size: cover;background-position: center;position: relative;min-height: 450px;">
+    <div class="container">
+        <h1 class="header center white-text" style="text-shadow: 1px 1px #444444;">Blog</h1>
+        <div class="row center">
+            <form method="post">
+                <button align="right" class="btn">
+                    Create New Post
+                </button>
+            </form>
+            <br>
         </div>
-
-
-<div class="row center" >
-        <form method="post">
-            <button align="right" class="btn">
-                Create New Post
-            </button>
-        </form>
-        <br>
     </div>
-    </div>
-
-<div class="row center">
-{% for post in posts %}
-    <div class="col s12 m6">
-        <div class="card teal">
-            <div class="card-content white-text">
-                <span class="card-title">{{post.title | upper}}</span>
-                <p>{{post.created | datetimeformat}}</p>
-                <br>
-                <p>{{post.content }}</p>
-                <br>
-            </div>
-<!--                         <div class="card-action">
+</div>
+<div class="container">
+    <div class="row center">
+        {% for post in posts %}
+        <div class="col s12 m6">
+            <div class="card teal">
+                <div class="card-content white-text">
+                    <span class="card-title">{{post.title | upper}}</span>
+                    <p>{{post.created | datetimeformat}}</p>
+                    <br>
+                    <p>{{post.content }}</p>
+                    <br>
+                </div>
+                <!--                         <div class="card-action">
               <a href="#">This is a link</a>
               <a href="#">This is a link</a>
             </div> -->
+            </div>
         </div>
+        {% endfor %}
     </div>
-{% endfor %} 
 </div>
 {% endblock %}
+
