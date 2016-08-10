@@ -2,10 +2,17 @@ import webapp2
 import jinja2
 import os
 
+
+def datetimeformat(value, format='%H:%M / %d-%m-%Y'):
+    return value.strftime(format)
+
 template_dir = os.path.join(os.path.dirname(__file__), "templates")
 jinja_env = jinja2.Environment(
     loader = jinja2.FileSystemLoader(template_dir),
     autoescape = True)
+
+jinja_env.filters["datetimeformat"] = datetimeformat
+
 
 class Handler(webapp2.RequestHandler):
 

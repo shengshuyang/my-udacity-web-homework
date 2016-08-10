@@ -16,8 +16,8 @@
 #
 import webapp2
 import handler as hd
-import os
 from validation_util import *
+
 
 class MainHandler(hd.Handler):
     def get(self):

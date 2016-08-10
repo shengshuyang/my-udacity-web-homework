@@ -14,10 +14,12 @@ months = ['January',
           'November',
           'December']
 
+
 def valid_month(month):
     if month.title() in months:
         return month.title()
     return None
+
 
 def valid_day(day):
     if not day.isdigit():
@@ -27,6 +29,7 @@ def valid_day(day):
         return day
     return None
 
+
 def valid_year(year):
     if not year.isdigit():
         return None
@@ -35,12 +38,14 @@ def valid_year(year):
         return year
     return None
 
+
 def get_html(path):
     dir_path = os.path.dirname(os.path.realpath(__file__))
-    index_path =  dir_path+path
+    index_path = dir_path + path
     return open(index_path).read()
+
 
 def escape_html(s):
     if type(s) is not str:
         s = str(s)
-    return cgi.escape(s, quote = True).encode('ascii','ignore')
+    return cgi.escape(s, quote = True).encode('ascii', 'ignore')
