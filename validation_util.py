@@ -13,7 +13,7 @@ months = ['January',
           'October',
           'November',
           'December']
-          
+
 def valid_month(month):
     if month.title() in months:
         return month.title()

@@ -23,7 +23,10 @@ handlers:
   script: thanks.app
 
 - url: /todo_list
-  script: todo_list.app  
+  script: todo_list.app
+
+- url: /ascii_chan
+  script: ascii_chan.app
 
 - url: .*
   script: main.app
