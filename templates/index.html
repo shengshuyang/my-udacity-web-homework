@@ -4,15 +4,15 @@
 My Udacity Web Homework by shengshuyang 
 {% endblock %} 
 
-{% block title %} 
-Home - Select an Option
-{% endblock %} 
-
 {% block content %}
 
-<div class="container">
-    <div class="section">
-        <div class="row center">
+    <div class="section no-pad-bot" id="index-banner" style="background-image: url('/images/little_tokyo.jpg');background-size: cover;background-position: center;position: relative;min-height: 450px;">
+
+        <div class="container">
+            <h1 class="header center white-text" style="text-shadow: 1px 1px #444444;">Home - Select an Option</h1>
+        </div>
+
+        <div class="row center" >
             <div class="col s8 offset-s2">
                 <a align="center" href="/signup" class="btn">Sign Up</a>
                 <a align="center" href="/todo_list" class="btn">ToDo List</a>
@@ -21,5 +21,4 @@ Home - Select an Option
             </div>
         </div>
     </div>
-</div>
 {% endblock %}

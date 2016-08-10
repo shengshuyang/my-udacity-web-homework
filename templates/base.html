@@ -12,17 +12,10 @@
 </head>
 
 <body>
-    <nav role="navigation">
+    <nav role="navigation  z-depth-4">
         <div class="nav-wrapper container center"><a href="/"id="logo-container" class="brand-logo"><i class="material-icons">toc</i></a>
         </div>
     </nav>
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <br>
-            <br>
-            <h1 class="header center grey-text text-darken-1">{% block title %}{% endblock %}</h1>
-        </div>
-    </div>
     {% block content %} {% endblock %}
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
