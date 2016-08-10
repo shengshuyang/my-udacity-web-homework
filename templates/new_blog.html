@@ -5,35 +5,27 @@ Blog by shengshuyang
 {% endblock %} 
 
 {% block content %}
-
-<div class="section no-pad-bot" id="index-banner" style="background-image: url('/images/little_tokyo.jpg');background-size: cover;background-position: center;position: relative;min-height: 450px;">
-
-        <div class="container">
-            <h1 class="header center white-text" style="text-shadow: 1px 1px #444444;">Create New Blog </h1>
-        </div>
-</div>
 <div class="container">
+    <h1 class="header center grey-text">Create New Blog </h1>
     <div class="section">
-            <form method="post" class="row center" >
-                <div class="row">
-                    <div class="input-field col s8 offset-s2">
-                        <input  type="text" name="title" value="{{title}}">
-                        <label class="active" for="title">Title</label>
-                    </div>
+        <form method="post" class="row center">
+            <div class="row">
+                <div class="input-field col s8 offset-s2">
+                    <input type="text" name="title" value="{{title}}">
+                    <label class="active" for="title">Title</label>
                 </div>
-
-                <div class="row">
-                    <div class="input-field col s8 offset-s2">
-                        <textarea class="materialize-textarea" id="txt1" name="content" >{{content}}</textarea>
-                        <label class="active" for="txt1">Content</label>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8 offset-s2">
+                    <textarea class="materialize-textarea" id="txt1" name="content">{{content}}</textarea>
+                    <label class="active" for="txt1">Content</label>
                 </div>
-
-                <div class="row">
-                        <button class="btn">Submit</button>
-                </div>
-
-            </form>
+            </div>
+            <div class="row">
+                <button class="btn">Submit</button>
+            </div>
+        </form>
     </div>
 </div>
+
 {% endblock %}
