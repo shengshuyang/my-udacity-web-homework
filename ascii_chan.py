@@ -17,7 +17,7 @@ class AsciiChanHandler(hd.Handler):
                     arts=arts)
 
     def get(self):
-        self.render('ascii_chan.html')
+        self.render_page()
 
     def post(self):
         title = self.request.get("title")
