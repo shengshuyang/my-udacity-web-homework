@@ -1,16 +1,25 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
-{% block title %}
-My Udacity Web Homework by shengshuyang
-{% endblock %}
+{% block header %} 
+My Udacity Web Homework by shengshuyang 
+{% endblock %} 
+
+{% block title %} 
+Home - Select an Option
+{% endblock %} 
 
 {% block content %}
-    <section class="page-header">
-        <h1 class="project-name">My Udacity Web Homework</h1>
-        <h2 class="project-tagline"></h2>
-        <a href="/signup" class="btn">Sign Up</a>
-        <a href="/todo_list" class="btn">ToDo List</a>
-        <a href="/ascii_chan" class="btn">ASCII Chan</a>
-        <a href="/blog" class="btn">Blog</a>
-    </section>
+
+<div class="container">
+    <div class="section">
+        <div class="row center">
+            <div class="col s8 offset-s2">
+                <a align="center" href="/signup" class="btn">Sign Up</a>
+                <a align="center" href="/todo_list" class="btn">ToDo List</a>
+                <a align="center" href="/ascii_chan" class="btn">ASCII Chan</a>
+                <a align="center" href="/blog" class="btn">Blog</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

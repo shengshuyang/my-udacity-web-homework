@@ -1,32 +1,57 @@
 {% extends "base.html" %} 
 
-{% block title %} ASCII Chan by shengshuyang {% endblock %} 
+{% block header %} 
+ASCII Chan by shengshuyang
+{% endblock %} 
+
+{% block title %} 
+ASCII Chan 
+{% endblock %} 
+
 {% block content %}
-<section class="page-header">
-    <h1 class="project-name">ASCII Chan</h1>
-    <h2 class="project-tagline"></h2>
-    <form method="post">
-        <label>
-            <div>Title</div>
-            <input class="btn" type="text" name="title" value="{{title}}">
-        </label>
-        <label>
-            <div>Content</div>
-            <textarea class="btn" name="art" rows="10" cols="40">{{art}}</textarea>
-        </label>
-        <div>{{error}}</div>
-        <br>
-        <div>
-            <button class="btn">Submit</button>
+
+<div class="container">
+    <div class="section">
+        <div class="row center">
+            <form method="post" class="col s12" >
+                <div class="row">
+                    <div class="input-field col s8 offset-s2">
+                        <input  type="text" name="title" value="{{title}}">
+                        <label class="active" for="title">Title</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s8 offset-s2">
+                        <textarea class="materialize-textarea" id="art" name="art" >{{art}}</textarea>
+                        <label class="active" for="art">Art</label>
+                    </div>
+                </div>
+
+                <div class="row">{{error}}</div>
+
+                <div class="row">
+                        <button class="btn">Submit</button>
+                </div>
+
+            </form>
         </div>
-    </form>
-    <hr>
-    <br> 
-    {% for art in arts %}
-    <div class="btn">
-        <div>{{art.title}}</div>
-        <pre class="btn">{{art.art}}</pre>
     </div>
-    {% endfor %}
-</section>
+</div>
+
+<div class="row center">
+{% for art in arts %}
+    <div class="col s6">
+        <div class="card teal">
+            <div class="card-content white-text">
+                    <span class="card-title">{{art.title | upper}}</span>
+                    <br>
+                    <pre>{{art.art }}</pre>
+                    <br>
+            </div>
+        </div>
+    </div>
+{% endfor %} 
+</div>
+
 {% endblock %}

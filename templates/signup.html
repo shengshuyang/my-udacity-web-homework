@@ -1,54 +1,50 @@
+{% extends "base.html" %} 
 
-
-
-
-{% extends "base.html" %}
-
-{% block title %}
-Signup Page by shengshuyang
+{% block header %} 
+Signup Page by shengshuyang 
 {% endblock %}
 
-{% block content %}
-    <section class="page-header">
-        <h1 class="project-name">Sign Up</h1>
-        <h2 class="project-tagline"></h2>
+{% block title %} 
+Signup Page
+{% endblock %}
 
-        <form method="post">
-            <table cellspacing="0" cellpadding="0">
-                <tr>
-                    <th class="btn">Username</th>
-                    <th class="btn">
-                        <input type="text" name="username" value="{{username}}">
-                    </th>
-                    <th>{{err1}}</th>
-                </tr>
-                <tr>
-                    <th class="btn">Password</th>
-                    <th class="btn">
-                        <input type="password" name="pswd" value="{{pswd}}">
-                    </th>
-                    <th>{{err2}}</th>
-                </tr>
-                <tr>
-                    <th class="btn">Verify Password</th>
-                    <th class="btn">
-                        <input type="password" name="pswd2" value="{{pswd2}}">
-                    </th>
-                    <th>{{err3}}</th>
-                </tr>
-                <tr>
-                    <th class="btn">Email(optional)</th>
-                    <th class="btn">
-                        <input type="text" name="email" value="{{email}}">
-                    </th>
-                    <th>{{err4}}</th>
-                </tr>
-                <tr>
-                    <th align="rigth" colspan="2">
-                        <input class = 'btn' type="submit">
-                    </th>
-                </tr>
-            </table>
+ {% block content %}
+<section>
+<br><br>
+    <div class="row center">
+        <form method="post" class="col s12">
+            <div class="row">
+                <div class="input-field col s6 offset-s3">
+                    <input class="validate" type="text" name="username" value="{{username}}">
+                    <label class="active" for="username">Username</label>
+                </div>
+                <div>{{err1}}</div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6 offset-s3">
+                    <input  class="validate" type="password" name="pswd" value="{{pswd}}">
+                    <label class="active" for="pswd">Password</label>
+                </div>
+                <div>{{err2}}</div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6 offset-s3">
+                    <input  class="validate" type="password" name="pswd2" value="{{pswd2}}">
+                    <label class="active" for="pswd2">Verify Password</label>
+                </div>
+                <div class="text col s6">{{err3}}</div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6 offset-s3">
+                    <input  class="validate" type="email" name="email" value="{{email}}">
+                    <label class="active" for="username">Email(optional)</label>
+                </div>
+                <div class="text col s6">{{err3}}</div>
+            </div>
+            <div class="row center">
+                <input class='btn' type="submit">
+            </div>
         </form>
-        </section>
+    </div>
+</section>
 {% endblock %}

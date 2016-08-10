@@ -1,28 +1,40 @@
-{% extends "base.html" %} {% block title %} Blog by shengshuyang {% endblock %} {% block content %}
-<section class="page-header">
-    <h1 class="project-name">ASCII Chan</h1>
-    <h2 class="project-tagline"></h2>
-    <form method="post">
-        <button align="right" class="btn">
-            Create New Post
-        </button>  
-    </form>
-    <hr> 
-    {% for post in posts %}
-    <div>
-        <table border="0" width="80%" align="center">
-            <tr>
-                <td align="left">{{post.title | upper}}</td>
-                <td align="right">{{post.created | datetimeformat}}</td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                <pre>{{post.content}}</pre>
-                </td>
-            </tr>
-        </table>
-        <hr>
+{% extends "base.html" %} 
+
+{% block header %} 
+Blog by shengshuyang 
+{% endblock %}
+
+{% block title %} 
+Blog
+{% endblock %}
+
+{% block content %}
+<div class="row center" >
+        <form method="post">
+            <button align="right" class="btn">
+                Create New Post
+            </button>
+        </form>
+        <br>
     </div>
-    {% endfor %}
-</section>
+
+<div class="row center">
+{% for post in posts %}
+    <div class="col s12 m6">
+        <div class="card teal">
+            <div class="card-content white-text">
+                <span class="card-title">{{post.title | upper}}</span>
+                <p>{{post.created | datetimeformat}}</p>
+                <br>
+                <p>{{post.content }}</p>
+                <br>
+            </div>
+<!--                         <div class="card-action">
+              <a href="#">This is a link</a>
+              <a href="#">This is a link</a>
+            </div> -->
+        </div>
+    </div>
+{% endfor %} 
+</div>
 {% endblock %}

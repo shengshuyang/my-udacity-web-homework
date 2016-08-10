@@ -1,38 +1,48 @@
 {% extends "base.html" %}
 
-{% block title %}
+{% block header %}
 ToDo List by shengshuyang
 {% endblock %}
 
+{% block title %} 
+ToDo List
+{% endblock %} 
+
 {% block content %}
-    <section class="page-header">
-        <h1 class="project-name">TODO List</h1>
-        <h2 class="project-tagline"></h2>
-        <form method="get">
-            <table border="0" width="400">
-                <tr>
-                    <th class="btn">
-                        <input type="text" name="food" value="{{item}}">
-                    </th>
-                    <th>
-                        <button class='btn'>Add</button>
-                    </th>
+
+<div class="container">
+    <div class="section">
+            <form class="row center " >
+            <div class="col s8 offset-s1">
+                    <div class="input-field ">
+                        <input  type="text" name="food" value="{{item}}">
+                        <label for="name"> what to do next?</label>
+                    </div>
+                </div>
+            <div class="col s2">
+                    <div class="input-field ">
+                        <button type="submit" class="btn">Add</button>
+                    </div>
+                </div>
                     {% for item in items %}
-                    <input type="hidden" name="food" value="{{item}}"> {% endfor %}
-                </tr>
-            </table>
-        </form>
-        <br>
-        <br>
-        <table border="0" width="400">
-            <tr>
-                {% if items %}<th>Items:</th> {% endif %}
-            </tr>
-            {% for item in items %}
-            <tr>
-                <th>&bull; {{item}}</th>
-            </tr>
-            {% endfor %}
-        </table>
-        </section>
+                    <input type="hidden" name="food" value="{{item}}"> 
+                    {% endfor %}
+                </form>
+
+<div class="row center">
+   {% for item in items %}
+    <div class="col s4">
+        <div class="card teal">
+            <div class="card-content white-text">
+                <span class="card-title">{{item}}</span>
+            </div>
+
+        </div>
+    </div>
+    {% endfor %} 
+</div>
+
+                </div>
+                </div>
+
 {% endblock %}

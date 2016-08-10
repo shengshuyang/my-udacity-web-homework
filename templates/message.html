@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
+{% block header %}
+{{message}}
+{% endblock %}
+
 {% block title %}
 {{message}}
 {% endblock %}
 
 {% block content %}
-    <section class="page-header">
-        <h1 class="project-name"> {{message}} </h1>
-        <h2 class="project-tagline"></h2>
-    </section>
 {% endblock %}

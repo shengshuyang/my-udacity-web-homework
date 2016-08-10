@@ -7,7 +7,13 @@ threadsafe: yes
 handlers:
 
 - url: /stylesheets
-  static_dir: stylesheets
+  static_dir: materialize/css
+
+- url: /js
+  static_dir: materialize/js
+
+- url: /fonts
+  static_dir: materialize/fonts  
 
 - url: /favicon\.ico
   static_files: favicon.ico

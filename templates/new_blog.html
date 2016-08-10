@@ -1,23 +1,36 @@
-{% extends "base.html" %} {% block title %} ToDo List by shengshuyang {% endblock %} {% block content %}
-<section class="page-header">
-    <h1 class="project-name">ASCII Chan</h1>
-    <h2 class="project-tagline"></h2>
-    <form method="post">
-        <label>
-            <div>Title</div>
-            <input class="btn" type="text" name="title" value="{{title}}">
-        </label>
-        <label>
-            <div>Content</div>
-            <textarea class="btn" name="content" rows="10" cols="40">{{content}}</textarea>
-        </label>
-        <div>{{error}}</div>
-        <br>
-        <div>
-            <button class="btn">Submit</button>
-        </div>
-    </form>
+{% extends "base.html" %} 
 
-</section>
+{% block header %} 
+Blog by shengshuyang 
+{% endblock %} 
+
+{% block title %} 
+Create New Blog 
+{% endblock %} 
+
+{% block content %}
+<div class="container">
+    <div class="section">
+            <form method="post" class="row center" >
+                <div class="row">
+                    <div class="input-field col s8 offset-s2">
+                        <input  type="text" name="title" value="{{title}}">
+                        <label class="active" for="title">Title</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s8 offset-s2">
+                        <textarea class="materialize-textarea" id="txt1" name="content" >{{content}}</textarea>
+                        <label class="active" for="txt1">Content</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                        <button class="btn">Submit</button>
+                </div>
+
+            </form>
+    </div>
+</div>
 {% endblock %}
-
