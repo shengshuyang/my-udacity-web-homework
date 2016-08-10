@@ -5,20 +5,20 @@ My Udacity Web Homework by shengshuyang
 {% endblock %} 
 
 {% block content %}
-
-    <div class="section no-pad-bot" id="index-banner" style="background-image: url('/images/little_tokyo.jpg');background-size: cover;background-position: center;position: relative;min-height: 450px;">
-
+    <div class="section no-pad-bot" id="index-banner" style="background-image: url('/images/little_tokyo.jpg');background-size: cover;background-position: center;position: relative;min-height: 600px;">
         <div class="container">
+            
             <h1 class="header center white-text" style="text-shadow: 1px 1px #444444;">Home - Select an Option</h1>
-        </div>
 
         <div class="row center" >
-            <div class="col s8 offset-s2">
-                <a align="center" href="/signup" class="btn">Sign Up</a>
-                <a align="center" href="/todo_list" class="btn">ToDo List</a>
-                <a align="center" href="/ascii_chan" class="btn">ASCII Chan</a>
-                <a align="center" href="/blog" class="btn">Blog</a>
+            <div class="col s2"></div>
+                <div class="col s2"><a align="center" href="/signup" class="btn">Signup</a></div>
+                <div class="col s2"><a align="center" href="/todo_list" class="btn">ToDo</a></div>
+                <div class="col s2"><a align="center" href="/ascii_chan" class="btn">Emoji</a></div>
+                <div class="col s2"><a align="center" href="/blog" class="btn">Blog</a></div>
+                <div class="col s2"></div>
             </div>
         </div>
+    </div>
     </div>
 {% endblock %}
