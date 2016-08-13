@@ -3,7 +3,7 @@ import handler as hd
 # import os
 from validation_util import *
 from blog_model import *
-
+import hashlib
 
 class BlogPostHandler(hd.Handler):
 
@@ -35,13 +35,36 @@ class NewPostHandler(hd.Handler):
                         title=title,
                         content=content)
 
+def hash_str(s):
+    return hashlib.md5(s).hexdigest()
+
+def make_secure_val(s):
+    return "%s|%s" %(s, hash_str(s)) 
+
+def check_secure_val(h):
+    val = h.split("|")[0]
+    if make_secure_val(val) == h:
+        return val
 
 class BlogHandler(hd.Handler):
 
     def get(self):
         posts = db.GqlQuery(
             "select * from BlogPost order by created desc")
-        self.render('blog.html', posts=posts)
+        cookie_str = self.request.cookies.get('visits')
+        visits = 0
+        if cookie_str:
+            cookie_val = check_secure_val(cookie_str)
+            if cookie_val:
+                visits = int(cookie_val)
+            else:
+                self.render("message.html", message=cookie_str)
+                return
+        visits += 1
+        self.response.headers.add_header('Set-Cookie', 'visits=%s' % make_secure_val(str(visits)))
+        #self.response.headers['Content-Type'] = 'text/plain'
+        #self.render('blog.html', posts=posts, visits=self.response.headers)
+        self.render('blog.html', posts=posts, visits= "Visit Count: %s" % visits)
 
     def post(self):
         self.redirect('/blog/new_post')
