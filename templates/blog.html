@@ -6,12 +6,12 @@ Blog by shengshuyang
 
 
 {% block content %}
-<div class="section no-pad-bot" id="index-banner" style="background-image: linear-gradient(120deg, #155799, #159957);background-size: cover;background-position: center;position: relative;min-height: 450px;">
+<div class="section no-pad-bot" id="index-banner" style="background-image: linear-gradient(120deg, #155799, #159957);background-size: cover;background-position: center;position: relative;min-height: 250px;">
     <div class="container">
         <h1 class="header center white-text" style="text-shadow: 1px 1px #444444;">Blog</h1>
         <div class="row center">
             <form method="post">
-                <button align="right" class="btn">
+                <button align="right" class="btn waves-effect waves-light">
                     Create New Post
                 </button>
             </form>
@@ -28,13 +28,13 @@ Blog by shengshuyang
                     <span class="card-title">{{post.title | upper}}</span>
                     <p>{{post.created | datetimeformat}}</p>
                     <br>
-                    <p>{{post.content }}</p>
+                    <p>{{post.content | truncate(140) }}</p>
+                    <!-- <p class="hidden">{{post.id}}</p> -->
                     <br>
                 </div>
-                <!--                         <div class="card-action">
-              <a href="#">This is a link</a>
-              <a href="#">This is a link</a>
-            </div> -->
+              <div class="card-action">
+              <a href="/blog/{{post.key().id()}}" class="btn waves-effect waves-light" style="width: 80%;">view</a>
+            </div>
             </div>
         </div>
         {% endfor %}

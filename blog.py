@@ -5,10 +5,21 @@ from validation_util import *
 from blog_model import *
 
 
-class NewBlogHandler(hd.Handler):
+class BlogPostHandler(hd.Handler):
+
+    def get(self, post_id):
+        key = db.Key.from_path('BlogPost', int(post_id))
+        post = db.get(key)
+        if not post:
+            self.render('message.html', message="Post doesn't exist.")
+        else:
+            self.render('blog_post.html', title=post.title, content=post.content)
+
+
+class NewPostHandler(hd.Handler):
 
     def get(self):
-        self.render('new_blog.html')
+        self.render('new_post.html')
 
     def post(self):
         title = self.request.get("title")
@@ -16,7 +27,8 @@ class NewBlogHandler(hd.Handler):
         if title and content:
             a = BlogPost(title=title, content=content)
             a.put()
-            self.redirect('/blog')
+            post_id = a.key().id()
+            self.redirect('/blog/%s' % str(post_id))
         else:
             self.render("new_blog.html",
                         error="Something wrong.",
@@ -32,9 +44,10 @@ class BlogHandler(hd.Handler):
         self.render('blog.html', posts=posts)
 
     def post(self):
-        self.redirect('/new_blog')
+        self.redirect('/blog/new_post')
 
 app = webapp2.WSGIApplication([
-    ('/blog', BlogHandler),
-    ('/new_blog', NewBlogHandler)
+    ('/blog/?', BlogHandler),
+    ('/blog/new_post', NewPostHandler),
+    ('/blog/([0-9]+)', BlogPostHandler)
 ], debug=True)
