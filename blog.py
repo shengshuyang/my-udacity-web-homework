@@ -5,6 +5,7 @@ from validation_util import *
 from blog_model import *
 import hashlib
 
+
 class BlogPostHandler(hd.Handler):
 
     def get(self, post_id):
@@ -64,7 +65,7 @@ class BlogHandler(hd.Handler):
         self.response.headers.add_header('Set-Cookie', 'visits=%s' % make_secure_val(str(visits)))
         #self.response.headers['Content-Type'] = 'text/plain'
         #self.render('blog.html', posts=posts, visits=self.response.headers)
-        self.render('blog.html', posts=posts, visits= "Visit Count: %s" % visits)
+        self.render('blog.html', posts=posts, footer_msg= "Visit Count: %s" % visits)
 
     def post(self):
         self.redirect('/blog/new_post')
