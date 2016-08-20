@@ -36,16 +36,20 @@ class NewPostHandler(hd.Handler):
                         title=title,
                         content=content)
 
+
 def hash_str(s):
     return hashlib.md5(s).hexdigest()
 
+
 def make_secure_val(s):
-    return "%s|%s" %(s, hash_str(s)) 
+    return "%s|%s" % (s, hash_str(s))
+
 
 def check_secure_val(h):
     val = h.split("|")[0]
     if make_secure_val(val) == h:
         return val
+
 
 class BlogHandler(hd.Handler):
 
@@ -62,9 +66,10 @@ class BlogHandler(hd.Handler):
                 self.render("message.html", message=cookie_str)
                 return
         visits += 1
-        self.response.headers.add_header('Set-Cookie', 'visits=%s' % make_secure_val(str(visits)))
-        #self.response.headers['Content-Type'] = 'text/plain'
-        #self.render('blog.html', posts=posts, visits=self.response.headers)
+        self.response.headers.add_header(
+            'Set-Cookie', 'visits=%s' % make_secure_val(str(visits)))
+        # self.response.headers['Content-Type'] = 'text/plain'
+        # self.render('blog.html', posts=posts, visits=self.response.headers)
         self.render('blog.html', posts=posts, footer_msg= "Visit Count: %s" % visits)
 
     def post(self):

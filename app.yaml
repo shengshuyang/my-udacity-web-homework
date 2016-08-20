@@ -31,6 +31,9 @@ handlers:
 - url: /signup
   script: signup.app
 
+- url: /signin
+  script: signin.app
+
 - url: /thanks
   script: thanks.app
 

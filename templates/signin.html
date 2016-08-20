@@ -1,7 +1,7 @@
 {% extends "base.html" %} 
 
 {% block header %} 
-Signup Page by shengshuyang 
+Signin Page by shengshuyang 
 {% endblock %}
 
 {% block title %} 
@@ -12,7 +12,7 @@ Signup Page
 
 <div class="section">
         <div class="container">
-            <h1 class="header center grey-text">Signup Page </h1>
+            <h1 class="header center grey-text">Signin Page </h1>
         </div>
 
 <br><br>
@@ -31,20 +31,6 @@ Signup Page
                     <label class="active" for="pswd">Password</label>
                 </div>
                 <div class="text red-text col s12 m6 offset-m3">{{err2}}</div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 m6 offset-m3">
-                    <input  class="validate" type="password" name="pswd2" value="{{pswd2}}">
-                    <label class="active" for="pswd2">Verify Password</label>
-                </div>
-                <div class="text red-text col s12 m6 offset-m3">{{err3}}</div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 m6 offset-m3">
-                    <input  class="validate" type="email" name="email" value="{{email}}">
-                    <label class="active" for="username">Email(optional)</label>
-                </div>
-                <div class="text red-text col s12 m6 offset-m3">{{err4}}</div>
             </div>
             <div class="row center">
                 <input class='btn' type="submit">
