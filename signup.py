@@ -33,7 +33,8 @@ class SignupHandler(hd.Handler):
         return errs
 
     def get(self):
-        self.render("signup.html")
+        nav = self.render_str("nav_off.html")
+        self.render("signup.html",navigation=nav)
 
     def post(self):
         user_input = {}
@@ -48,7 +49,9 @@ class SignupHandler(hd.Handler):
             errs[0] = "user already exists"
         for err in errs:
             if err != "":
+                nav = self.render_str("nav_off.html")
                 self.render("signup.html",
+                            navigation=nav,
                             username=user_input["username"],
                             pswd=user_input["password"],
                             pswd2=user_input["password2"],

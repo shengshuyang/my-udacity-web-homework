@@ -14,13 +14,18 @@ class BlogPostHandler(hd.Handler):
         if not post:
             self.render('message.html', message="Post doesn't exist.")
         else:
-            self.render('blog_post.html', title=post.title, content=post.content)
+            nav = self.render_nav_str()
+            self.render('blog_post.html',
+                        navigation=nav,
+                        title=post.title,
+                        content=post.content)
 
 
 class NewPostHandler(hd.Handler):
 
     def get(self):
-        self.render('new_post.html')
+        nav = self.render_nav_str()
+        self.render('new_post.html', navigation=nav)
 
     def post(self):
         title = self.request.get("title")
@@ -31,7 +36,9 @@ class NewPostHandler(hd.Handler):
             post_id = a.key().id()
             self.redirect('/blog/%s' % str(post_id))
         else:
+            nav = self.render_nav_str()
             self.render("new_blog.html",
+                        navigation=nav,
                         error="Something wrong.",
                         title=title,
                         content=content)
@@ -70,7 +77,9 @@ class BlogHandler(hd.Handler):
             'Set-Cookie', 'visits=%s' % make_secure_val(str(visits)))
         # self.response.headers['Content-Type'] = 'text/plain'
         # self.render('blog.html', posts=posts, visits=self.response.headers)
-        self.render('blog.html', posts=posts, footer_msg= "Visit Count: %s" % visits)
+        nav = self.render_nav_str()
+        self.render('blog.html', navigation=nav,
+                    posts=posts, footer_msg="Visit Count: %s" % visits)
 
     def post(self):
         self.redirect('/blog/new_post')

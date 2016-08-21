@@ -9,8 +9,9 @@ class AsciiChanHandler(hd.Handler):
     def render_page(self, error="", title="", art=""):
         arts = db.GqlQuery(
             "select * from Art order by created desc")
-
+        nav = self.render_nav_str()
         self.render("ascii_chan.html",
+                    navigation=nav,
                     error=error,
                     title=title,
                     art=art,

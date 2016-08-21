@@ -34,6 +34,9 @@ handlers:
 - url: /signin
   script: signin.app
 
+- url: /signout
+  script: signout.app
+
 - url: /thanks
   script: thanks.app
 

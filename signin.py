@@ -10,7 +10,8 @@ class SigninHandler(hd.Handler):
             return self.request.get(s).encode('ascii', 'ignore')
 
     def get(self):
-        self.render("signin.html")
+        nav = self.render_str("nav_off.html")
+        self.render("signin.html", navigation=nav)
 
     def post(self):
         i_name = self.get_form_input("username")
@@ -34,7 +35,9 @@ class SigninHandler(hd.Handler):
                     'Set-Cookie', 'user=%s' % user_hash.encode('ascii', 'ignore'))
             self.redirect("welcome")
         else:
+            nav = self.render_str("nav_off.html")
             self.render("signin.html",
+                        navigation=nav,
                         username=i_name,
                         password=i_pswd,
                         err2="incorrect password")

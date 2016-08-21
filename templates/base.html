@@ -14,12 +14,8 @@
 </header>
 
 <main>
-<div class="navbar-fixed">
-    <nav role="navigation" class="teal">
-        <div class="nav-wrapper container" style="width:100%"><a href="/"id="logo-container" class="brand-logo left" style="text-indent:1.5em" title="Go back home"><i class="material-icons">toc</i></a>
-        </div>
-    </nav>
-    </div>
+    {{navigation | safe}}
+
     {% block content %} {% endblock %}
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

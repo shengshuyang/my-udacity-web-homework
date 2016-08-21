@@ -21,7 +21,8 @@ from validation_util import *
 
 class MainHandler(hd.Handler):
     def get(self):
-        self.render('index.html')
+        nav = self.render_nav_str()
+        self.render('index.html', navigation=nav)
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)

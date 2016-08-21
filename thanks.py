@@ -4,7 +4,8 @@ import handler as hd
 
 class ThanksHandler(hd.Handler):
     def get(self):
-        self.render('message.html', message="Thank you!")
+        nav = self.render_nav_str()
+        self.render('message.html', navigation=nav, message="Thank you!")
 
 app = webapp2.WSGIApplication([
     ('/thanks', ThanksHandler)
