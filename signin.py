@@ -14,6 +14,7 @@ class SigninHandler(hd.Handler):
         self.render("signin.html", navigation=nav)
 
     def post(self):
+        nav = self.render_str("nav_off.html")
         i_name = self.get_form_input("username")
         i_pswd = self.get_form_input("pswd")
         err1, err2 = "", ""
@@ -23,11 +24,19 @@ class SigninHandler(hd.Handler):
             err2 = "password cannot be empty"
         if err1 or err2:
             self.render("signin.html",
+                        navigation=nav,
                         username=i_name,
                         password=i_pswd,
                         err1=err1, err2=err2)
             return
         user = db.GqlQuery("select * from User where username = :1", i_name)
+        if user.count() != 1:
+            self.render("signin.html",
+                        navigation=nav,
+                        username=i_name,
+                        password=i_pswd,
+                        err1="username not found!")
+            return
         user = user[0]
         if valid_pw(i_name, i_pswd, user.password):
             user_hash = "%s|%s" % (i_name, user.password)
@@ -35,7 +44,6 @@ class SigninHandler(hd.Handler):
                     'Set-Cookie', 'user=%s' % user_hash.encode('ascii', 'ignore'))
             self.redirect("welcome")
         else:
-            nav = self.render_str("nav_off.html")
             self.render("signin.html",
                         navigation=nav,
                         username=i_name,
