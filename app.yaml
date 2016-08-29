@@ -46,6 +46,12 @@ handlers:
 - url: /ascii_chan
   script: ascii_chan.app
 
+- url: /digit_recognition
+  script: digit_recognition.app
+
+- url: /img
+  script: digit_recognition.app
+
 - url: /blog.*
   script: blog.app
 

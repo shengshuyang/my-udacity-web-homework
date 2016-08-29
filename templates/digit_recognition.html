@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block header %}
+Recognize a Hand Written Digit by shengshuyang
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section">
+        <h1 class="header center grey-text">Recognize a Digit </h1>
+        <form enctype="multipart/form-data" method="post">
+        <div class="row">
+            <div class="col s12 m10 offset-m1">
+                <div class="file-field input-field">
+                      <div class="btn">
+                        <span>File</span>
+                        <input type="file" name="attachment" >
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                      </div>
+                    </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col s2 m2 offset-s8 offset-m8">
+                <div class="input-field ">
+                    <button type="submit" class="btn">Submit</button>
+                </div>
+            </div>
+            </div>
+        </form>
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+        <div class="row center">
+        {% for img in imgs%}
+            <div class="col s12 m3">
+                <div class="card teal">
+                    <div class="card-content white-text">
+                        {# <span  class="card-title" >{{label}}</span> #}
+                        <img src="/img?img_id={{img}}" alt="an image" style="width:90%">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
