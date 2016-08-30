@@ -1,0 +1,14 @@
+psquery/__init__.py,sha256=wh-CTlNwNMjSzkcN3sYoox9Bp6h74o_FLA9TQHADSTA,56
+psquery/config.py,sha256=eAldOvfNPkq5IUoMVu_dx9jHHD0ZrUPPfwxbwITiixw,12238
+psquery/query_client.py,sha256=4iyU51ekUIoU-mqsEOlGXVQj7Yj0BNeveqoVaGBBRzM,10065
+psquery-2.0.dist-info/DESCRIPTION.rst,sha256=wYa7yhkfadUrdTaykWeQJdoNtz7Wcx6y5QGz3ckREaU,2596
+psquery-2.0.dist-info/METADATA,sha256=X59CYixV0OFUi76O9Z4tKEkygSVwMOrKUGsOLT0WwuQ,3380
+psquery-2.0.dist-info/RECORD,,
+psquery-2.0.dist-info/WHEEL,sha256=BtVfdXUcEYLcFjOkbIrCFRyXU4qszVPt-E9o3RWkSNw,93
+psquery-2.0.dist-info/entry_points.txt,sha256=eqGnTHtEVMYwfXVk1Z9MhC8O2N8wuqAbr0lisLmrkxs,20
+psquery-2.0.dist-info/metadata.json,sha256=gnF17dnOhGwE0WzcquuFKCBMaVWfCUhb2YUsIh70kDw,1008
+psquery-2.0.dist-info/top_level.txt,sha256=AD5j2iQhnsfFQrQq_N7UOo16Q2Crs3clRu5e75mf6Ck,8
+psquery-2.0.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+psquery/__init__.pyc,,
+psquery/query_client.pyc,,
+psquery/config.pyc,,
