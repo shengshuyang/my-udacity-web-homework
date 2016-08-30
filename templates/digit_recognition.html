@@ -38,8 +38,10 @@ Recognize a Hand Written Digit by shengshuyang
             <div class="col s12 m3">
                 <div class="card teal">
                     <div class="card-content white-text">
-                        {# <span  class="card-title" >{{label}}</span> #}
-                        <img src="/img?img_id={{img}}" alt="an image" style="width:90%">
+                        <img src="/img?img_id={{img[0]}}" alt="an image" style="width:90%">
+                        {% if img[1] %}
+                        <span  class="card-content" >Label: {{img[1]}}</span>
+                        {% endif %}
                     </div>
                 </div>
             </div>
