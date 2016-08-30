@@ -22,25 +22,36 @@ class DigitRecognitionHandler(hd.Handler):
 
     def render_images(self):
         nav = self.render_nav_str()
-        ret = ImageModel.query().order(-ImageModel.date).fetch(8)
-        imgs = [(img.key.urlsafe(), img.label) for img in ret]
+        imgs = ImageModel.query().order(-ImageModel.date).fetch(8)
+        for img in imgs:
+            if not img.label:
+                url = self.request.host_url+"/img?img_id="+img.key.urlsafe()
+                img.label = self.get_prediction(url)
+                if img.label:
+                    img.put()
+        url_lable_pairs = [(img.key.urlsafe(), img.label) for img in imgs]
         nav = self.render_nav_str()
         self.render("digit_recognition.html",
-                    imgs=imgs,
+                    imgs=url_lable_pairs,
                     navigation=nav)
 
-    def get_prediction(self, img):
+    def get_prediction(self, url):
         turi_key = "3b3e260a-69f8-406c-b4f3-65f29178d0ee"
         turi_key = base64.b64encode("admin_key:" + turi_key)
         turi_url = "http://my-ps-708303533.us-west-2.elb.amazonaws.com/query/predict_digit"
         headers = {"Authorization": "Basic %s" % turi_key}
-        data = '{"data": {"img": %s}}' % json.dumps(img)
+        data = '{"data": {"url": "%s"}}' % url
+        print data
         result = urlfetch.fetch(url=turi_url,
                                 payload=data,
                                 method=urlfetch.POST,
                                 headers=headers)
         result = json.loads(result.content)
-        return result['response']
+        print result
+        if "response" in result:
+            return str(result['response'])
+        else:
+            return None
 
     def get(self):
         self.render_images()
@@ -49,18 +60,11 @@ class DigitRecognitionHandler(hd.Handler):
         file_upload = self.request.POST.get('attachment')
         blob = file_upload.file.read()
         blob = images.resize(blob, 480, 480)
-        # todo: change img_str to the actual blob
-        img_str = ["0"] * 64
-        label = self.get_prediction(img_str)
-        label = str(label)
-
         file_name = file_upload.filename
         img = ImageModel(id=file_name,
                          file_name=file_name,
-                         blob=blob,
-                         label=label)
+                         blob=blob)
         img.put()
-
         self.render_images()
 
 app = webapp2.WSGIApplication([
