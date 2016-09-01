@@ -20,20 +20,21 @@ class ImageHandler(hd.Handler):
 
 class DigitRecognitionHandler(hd.Handler):
 
-    def render_images(self):
+    def render_images(self, note=""):
         nav = self.render_nav_str()
         imgs = ImageModel.query().order(-ImageModel.date).fetch(8)
         for img in imgs:
             if not img.label:
                 url = self.request.host_url+"/img?img_id="+img.key.urlsafe()
-                img.label = self.get_prediction(url)
-                if img.label:
-                    img.put()
+                # img.label = self.get_prediction(url)
+                # if img.label:
+                #     img.put()
         url_lable_pairs = [(img.key.urlsafe(), img.label) for img in imgs]
         nav = self.render_nav_str()
         self.render("digit_recognition.html",
                     imgs=url_lable_pairs,
-                    navigation=nav)
+                    navigation=nav,
+                    note=note)
 
     def get_prediction(self, url):
         turi_key = "3b3e260a-69f8-406c-b4f3-65f29178d0ee"
@@ -65,7 +66,8 @@ class DigitRecognitionHandler(hd.Handler):
                          file_name=file_name,
                          blob=blob)
         img.put()
-        self.render_images()
+        note = "Note: Service temporarily closed due to cost of AWS usage. I will turn it back on when serious models are deployed."
+        self.render_images(note=note)
 
 app = webapp2.WSGIApplication([
     ('/digit_recognition', DigitRecognitionHandler),
